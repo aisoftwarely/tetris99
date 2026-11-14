@@ -7,7 +7,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#07030f">
-<title>TETRIS 99 · 单机版</title>
+<title>俄罗斯方块 · 单机版</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230b0420'/%3E%3Crect x='10' y='10' width='18' height='18' rx='4' fill='%2322e6ff'/%3E%3Crect x='30' y='10' width='18' height='18' rx='4' fill='%23ff2e88'/%3E%3Crect x='10' y='30' width='18' height='18' rx='4' fill='%23ffd23f'/%3E%3Crect x='30' y='30' width='18' height='18' rx='4' fill='%238b5cff'/%3E%3C/svg%3E">
 <style>
   :root{
@@ -56,20 +56,12 @@
     position:relative;z-index:2;flex:0 0 auto;height:46px;display:flex;align-items:center;
     padding:0 12px;gap:10px;
   }
-  #brand{display:flex;align-items:baseline;gap:5px;font-style:italic;line-height:1}
-  .b-t{
-    font-family:"Arial Black","Helvetica Neue",sans-serif;font-weight:900;font-size:22px;
-    letter-spacing:-1.2px;
-    background:linear-gradient(180deg,#ffffff 0%,#b9f2ff 40%,#22b8ff 78%,#0a7bd6 100%);
+  #brand{display:flex;align-items:center;line-height:1}
+  .b-cn{
+    font-weight:900;font-size:19px;letter-spacing:1.5px;
+    background:linear-gradient(180deg,#fff 0%,#c9f7ff 40%,#38c9ff 72%,#0b7fd8 100%);
     -webkit-background-clip:text;background-clip:text;color:transparent;
-    filter:drop-shadow(0 0 10px rgba(34,230,255,.45));
-  }
-  .b-99{
-    font-family:"Arial Black","Helvetica Neue",sans-serif;font-style:normal;font-weight:900;
-    font-size:16px;color:#fff;background:linear-gradient(180deg,#ff5aa4,#ff136f);
-    padding:2px 6px 3px;border-radius:5px;transform:skew(-9deg);
-    box-shadow:0 0 14px rgba(255,46,136,.55),inset 0 1px 0 rgba(255,255,255,.4);
-    letter-spacing:0;
+    filter:drop-shadow(0 0 9px rgba(34,230,255,.45));
   }
   #topActions{display:flex;gap:6px;margin-left:auto}
   .mode-tag{
@@ -203,20 +195,12 @@
   }
   .overlay.show{display:flex}
   .menu-inner{width:100%;max-width:360px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:0}
-  .logo{display:flex;align-items:center;gap:9px;font-style:italic;margin-top:2px}
-  .logo-t{
-    font-family:"Arial Black","Helvetica Neue",sans-serif;font-weight:900;font-size:52px;
-    letter-spacing:-3px;line-height:1;
+  .logo{display:flex;align-items:center;justify-content:center;margin-top:2px}
+  .logo-cn{
+    font-weight:900;font-size:46px;letter-spacing:3px;line-height:1.15;
     background:linear-gradient(180deg,#fff 0%,#c9f7ff 38%,#38c9ff 70%,#0b7fd8 100%);
     -webkit-background-clip:text;background-clip:text;color:transparent;
-    filter:drop-shadow(0 0 22px rgba(34,230,255,.5)) drop-shadow(0 4px 0 rgba(10,20,60,.9));
-  }
-  .logo-99{
-    font-family:"Arial Black",sans-serif;font-weight:900;font-style:normal;font-size:31px;
-    color:#fff;padding:3px 9px 5px;border-radius:8px;transform:skew(-9deg);
-    background:linear-gradient(180deg,#ff6aa8,#ff0f68);
-    box-shadow:0 0 26px rgba(255,46,136,.65),inset 0 2px 0 rgba(255,255,255,.45);
-    letter-spacing:-1px;
+    filter:drop-shadow(0 0 22px rgba(34,230,255,.5)) drop-shadow(0 3px 0 rgba(10,20,60,.9));
   }
   .tagline{margin:16px 0 0;font-size:12px;letter-spacing:2px;color:#a7b0d6}
   .tagline b{color:#ffd23f;font-weight:700}
@@ -316,16 +300,15 @@
   @media (max-height:700px){
     .cbtn{height:42px}
     #nextCanvas{height:108px}
-    .logo-t{font-size:42px}
-    .logo-99{font-size:26px}
+    .logo-cn{font-size:38px}
   }
 </style>
 </head>
 <body>
 <div id="app">
   <header id="topbar">
-    <div id="brand"><span class="b-t">TETRIS</span><span class="b-99">99</span></div>
-    <span class="mode-tag">MARATHON</span>
+    <div id="brand"><span class="b-cn">俄罗斯方块</span></div>
+    <span class="mode-tag">单机版</span>
     <div id="topActions">
       <button id="soundBtn" class="ibtn" aria-label="音效">♪</button>
       <button id="pauseBtn" class="ibtn" aria-label="暂停">❚❚</button>
@@ -388,7 +371,7 @@
     <i class="deco-block" style="--rot:-6deg;left:24%;top:6%;background:#4d7dff;animation-delay:-2.5s;width:16px;height:16px"></i>
   </div>
   <div class="menu-inner">
-    <div class="logo"><span class="logo-t">TETRIS</span><span class="logo-99">99</span></div>
+    <div class="logo"><span class="logo-cn">俄罗斯方块</span></div>
     <p class="tagline">经典 <b>单人模式</b></p>
     <div class="menu-rule"><span>单人</span><span>马拉松</span><span>无联网</span></div>
     <button id="startBtn" class="bigbtn">开始游戏</button>
@@ -404,7 +387,7 @@
 <div id="helpOverlay" class="overlay">
   <div class="sheet">
     <h2>玩法说明</h2>
-    <p class="sub">TETRIS 99 · 单机版</p>
+    <p class="sub">俄罗斯方块 · 单机版</p>
     <div class="rule"><span class="n">1</span><div><b>目标。</b>尽量消行、拿高分；方块堆到顶端游戏结束。</div></div>
     <div class="rule"><span class="n">2</span><div><b>消行得分。</b>一次消 1 / 2 / 3 / 4 行 = 100 / 300 / 500 / 800，再乘当前等级。</div></div>
     <div class="rule"><span class="n">3</span><div><b>T-Spin。</b>单 / 双 / 三行 = 800 / 1200 / 1600，迷你 T-Spin 分数较低。</div></div>
@@ -435,7 +418,7 @@
   <div class="menu-inner">
     <div class="res-badge" id="resBadge">GAME OVER</div>
     <div class="res-title" id="resScore">0</div>
-    <div class="res-sub" id="resSub">经典马拉松</div>
+    <div class="res-sub" id="resSub">单机经典模式</div>
     <div class="res-stats">
       <div><b id="resLines">0</b><span>消行</span></div>
       <div><b id="resLevel">1</b><span>等级</span></div>
@@ -498,10 +481,32 @@ const store = {
 class AudioEngine{
   constructor(){
     this.ctx=null; this.master=null; this.sfxBus=null; this.musicBus=null;
-    this.noiseBuf=null; this.music=null;
+    this.noiseBuf=null; this.music=null; this.watchdog=null;
+    this._musicWanted=false;
     this.muted = store.get('t99.muted')==='1';
   }
+  ensureWatchdog(){
+    if(this.watchdog) return;
+    // iOS 来电/切后台后 AudioContext 会变成 suspended/interrupted；
+    // 定时尝试恢复，真正的恢复仍以用户手势为准。
+    this.watchdog = setInterval(()=>{
+      if(this.ctx && this.ctx.state !== 'running') this.resume();
+    }, 1500);
+  }
+  resume(){
+    if(!this.ctx) return;
+    if(this.ctx.state === 'suspended' || this.ctx.state === 'interrupted'){
+      try{
+        const p = this.ctx.resume();
+        if(p && p.catch) p.catch(()=>{});
+      }catch(e){}
+    }
+  }
   unlock(){
+    if(this.ctx && this.ctx.state === 'closed'){
+      this.ctx = null;
+      this.music = null;
+    }
     if(!this.ctx){
       const AC = window.AudioContext || window.webkitAudioContext;
       if(!AC) return;
@@ -513,12 +518,19 @@ class AudioEngine{
       this.sfxBus.gain.value = 0.48;
       this.sfxBus.connect(this.master);
       this.musicBus = this.ctx.createGain();
-      this.musicBus.gain.value = 0.115;
+      this.musicBus.gain.value = 0.135;
       this.musicBus.connect(this.master);
       this.makeNoise();
       this.music = new Music(this);
+      this.ctx.addEventListener('statechange', ()=>{
+        if(this.ctx.state === 'running' && this._musicWanted && this.music && !this.music.on){
+          this.music.start();
+        }
+      });
+      this.ensureWatchdog();
+      if(this._musicWanted && this.music) this.music.start();
     }
-    if(this.ctx.state === 'suspended') this.ctx.resume();
+    this.resume();
   }
   makeNoise(){
     const len = Math.floor(this.ctx.sampleRate*1.0);
@@ -537,6 +549,7 @@ class AudioEngine{
   }
   tone(o){
     if(!this.ctx) return;
+    if(this.ctx.state !== 'running') this.resume();
     const t = this.ctx.currentTime + (o.when||0);
     const dur = o.dur||0.1;
     const osc = this.ctx.createOscillator();
@@ -553,13 +566,15 @@ class AudioEngine{
   }
   noise(o){
     if(!this.ctx || !this.noiseBuf) return;
+    if(this.ctx.state !== 'running') this.resume();
     const t = this.ctx.currentTime + (o.when||0);
     const dur = o.dur||0.12;
     const src = this.ctx.createBufferSource();
     src.buffer = this.noiseBuf;
     const f = this.ctx.createBiquadFilter();
     f.type = o.type||'lowpass';
-    f.frequency.setValueAtTime(o.freq||1200, t);
+    f.frequency.setValueAtTime(Math.max(30,o.freq||1200), t);
+    if(o.to && o.to !== o.freq) f.frequency.exponentialRampToValueAtTime(Math.max(30,o.to), t+dur);
     f.Q.value = o.q||1;
     const g = this.ctx.createGain();
     g.gain.setValueAtTime(o.vol||0.15, t);
@@ -567,82 +582,106 @@ class AudioEngine{
     src.connect(f); f.connect(g); g.connect(o.bus||this.sfxBus);
     src.start(t); src.stop(t+dur+0.03);
   }
-  /* ---- SFX ---- */
-  move(){ this.tone({freq:760,to:860,dur:0.025,type:'triangle',vol:0.07}); }
-  rotate(){ this.tone({freq:460,to:640,dur:0.04,type:'square',vol:0.08}); }
-  lock(){ this.tone({freq:170,to:90,dur:0.07,type:'sine',vol:0.15}); this.noise({dur:0.035,vol:0.06,freq:900}); }
-  hold(){ this.tone({freq:520,to:760,dur:0.06,type:'triangle',vol:0.1}); this.tone({freq:1040,to:1200,dur:0.05,type:'sine',vol:0.05,when:0.04}); }
-  drop(){ this.noise({dur:0.12,vol:0.14,freq:700}); this.tone({freq:130,to:50,dur:0.13,type:'sine',vol:0.18}); }
+  /* ---- SFX（全部原创合成） ---- */
+  move(){
+    this.tone({freq:1180,to:940,dur:0.02,type:'triangle',vol:0.045});
+    this.noise({dur:0.012,vol:0.018,freq:5200,type:'highpass'});
+  }
+  rotate(){
+    this.noise({dur:0.03,vol:0.05,freq:2600,type:'bandpass',q:1.4});
+    this.tone({freq:540,to:760,dur:0.032,type:'triangle',vol:0.05});
+  }
+  lock(){
+    this.tone({freq:150,to:62,dur:0.105,type:'sine',vol:0.18});
+    this.noise({dur:0.055,vol:0.1,freq:420,type:'lowpass'});
+    this.noise({dur:0.018,vol:0.025,freq:3600,type:'highpass'});
+  }
+  hold(){
+    this.tone({freq:620,to:880,dur:0.055,type:'sine',vol:0.09});
+    this.tone({freq:1240,dur:0.07,type:'sine',vol:0.045,when:0.03});
+  }
+  drop(){
+    this.noise({dur:0.14,vol:0.17,freq:1800,to:220,type:'lowpass'});
+    this.tone({freq:170,to:42,dur:0.16,type:'sine',vol:0.22});
+    this.tone({freq:90,to:38,dur:0.18,type:'triangle',vol:0.1});
+  }
   clear(n,tspin){
-    const scale = [523,659,784,1047,1319];
-    const count = Math.min(4, Math.max(2, n+1));
+    const steps = [0,4,7,11,14,19,22];
+    const base = 523.25;
+    const count = Math.min(6, n+2);
     for(let i=0;i<count;i++){
-      this.tone({freq:scale[i],dur:0.1,type:'square',vol:0.1,when:i*0.035});
+      const f = base * Math.pow(2, steps[i]/12);
+      this.tone({freq:f,dur:0.14,type:'triangle',vol:0.07,when:i*0.028});
+      this.tone({freq:f*2,dur:0.09,type:'sine',vol:0.022,when:i*0.028+0.004});
     }
-    this.noise({dur:0.14,vol:0.09,type:'highpass',freq:2400});
+    this.noise({dur:0.18,vol:0.06,freq:1200,to:6000,type:'bandpass',q:0.7});
     if(tspin){
-      this.tone({freq:1568,dur:0.18,type:'sine',vol:0.09,when:0.02});
-      this.tone({freq:2093,dur:0.22,type:'sine',vol:0.06,when:0.06});
+      this.tone({freq:1568,dur:0.24,type:'sine',vol:0.07,when:0.02});
+      this.tone({freq:2093,dur:0.28,type:'sine',vol:0.045,when:0.07});
+      this.tone({freq:2637,dur:0.2,type:'triangle',vol:0.028,when:0.12});
     }
     if(n>=4){
-      this.tone({freq:110,to:70,dur:0.3,type:'sawtooth',vol:0.11});
-      this.tone({freq:220,to:880,dur:0.26,type:'square',vol:0.06});
-      this.noise({dur:0.3,vol:0.12,freq:300});
+      this.tone({freq:100,to:55,dur:0.4,type:'sawtooth',vol:0.09});
+      this.tone({freq:220,to:880,dur:0.34,type:'triangle',vol:0.06});
+      this.noise({dur:0.44,vol:0.14,freq:260,type:'lowpass'});
+      this.tone({freq:1047,dur:0.42,type:'sine',vol:0.04,when:0.05});
     }
   }
-  ko(){
-    this.noise({dur:0.4,vol:0.26,freq:260,type:'lowpass'});
-    this.tone({freq:340,to:60,dur:0.35,type:'sawtooth',vol:0.22});
-    this.tone({freq:1200,to:300,dur:0.25,type:'square',vol:0.1,when:0.03});
-    this.tone({freq:1760,dur:0.18,type:'sine',vol:0.09,when:0.12});
+  countdown(){
+    this.tone({freq:880,to:760,dur:0.07,type:'sine',vol:0.1});
+    this.noise({dur:0.018,vol:0.025,freq:4200,type:'highpass'});
   }
-  badge(){
-    [1047,1319,1568,2093].forEach((f,i)=>this.tone({freq:f,dur:0.12,type:'sine',vol:0.07,when:i*0.05}));
+  go(){
+    [523.25,659.25,783.99,1046.5].forEach((f,i)=>this.tone({freq:f,dur:0.42,type:'triangle',vol:0.08,when:i*0.012}));
+    this.noise({dur:0.3,vol:0.07,freq:2500,to:9000,type:'highpass'});
   }
-  warn(){ this.tone({freq:110,to:90,dur:0.12,type:'square',vol:0.08}); this.tone({freq:110,to:90,dur:0.1,type:'square',vol:0.06,when:0.15}); }
-  garbage(){ this.tone({freq:70,to:45,dur:0.14,type:'sawtooth',vol:0.14}); this.noise({dur:0.1,vol:0.1,freq:400}); }
-  countdown(){ this.tone({freq:660,dur:0.09,type:'square',vol:0.12}); }
-  go(){ this.tone({freq:880,to:1320,dur:0.22,type:'square',vol:0.14}); this.tone({freq:1320,dur:0.3,type:'sine',vol:0.08,when:0.05}); }
-  target(){ this.tone({freq:1000,to:1200,dur:0.035,type:'square',vol:0.06}); }
-  pause(){ this.tone({freq:660,to:440,dur:0.09,type:'triangle',vol:0.08}); }
+  target(){ this.tone({freq:880,to:1100,dur:0.045,type:'sine',vol:0.05}); }
+  pause(){
+    this.tone({freq:660,to:520,dur:0.09,type:'sine',vol:0.07});
+    this.tone({freq:440,to:330,dur:0.12,type:'triangle',vol:0.05,when:0.07});
+  }
   gameOver(){
-    this.tone({freq:392,to:196,dur:0.7,type:'sawtooth',vol:0.16});
-    this.tone({freq:294,to:147,dur:0.9,type:'triangle',vol:0.12,when:0.12});
-    this.noise({dur:0.8,vol:0.1,freq:500});
+    this.tone({freq:440,to:220,dur:0.55,type:'triangle',vol:0.11});
+    this.tone({freq:330,to:165,dur:0.75,type:'sine',vol:0.09,when:0.1});
+    this.tone({freq:220,to:110,dur:0.95,type:'sawtooth',vol:0.06,when:0.2});
+    this.noise({dur:0.6,vol:0.055,freq:600,type:'lowpass'});
   }
-  win(){
-    const seq=[523,659,784,1047,1319,1568,2093];
-    seq.forEach((f,i)=>this.tone({freq:f,dur:0.22,type:'square',vol:0.1,when:i*0.09}));
-    seq.forEach((f,i)=>this.tone({freq:f/2,dur:0.3,type:'triangle',vol:0.06,when:i*0.09}));
-    this.noise({dur:0.8,vol:0.08,type:'highpass',freq:5000,when:0.35});
+  levelup(){
+    [659.25,783.99,987.77,1318.5].forEach((f,i)=>{
+      this.tone({freq:f,dur:0.16,type:'triangle',vol:0.08,when:i*0.07});
+      this.tone({freq:f*2,dur:0.1,type:'sine',vol:0.026,when:i*0.07+0.01});
+    });
   }
-  final(){ this.tone({freq:220,to:440,dur:0.35,type:'sawtooth',vol:0.1}); this.tone({freq:440,to:880,dur:0.4,type:'square',vol:0.06,when:0.06}); }
-  levelup(){ [784,988,1175,1568].forEach((f,i)=>this.tone({freq:f,dur:0.14,type:'triangle',vol:0.09,when:i*0.06})); }
 }
 
 class Music{
   constructor(eng){
     this.eng=eng; this.on=false; this.step=0; this.next=0; this.timer=null;
-    this.intensity=0; this.bpm=138;
+    this.intensity=0; this.bpm=144;
   }
   start(){
+    this.eng._musicWanted = true;
     if(this.on || !this.eng.ctx) return;
     this.on=true;
     this.next = this.eng.ctx.currentTime + 0.08;
+    if(this.timer) clearInterval(this.timer);
     this.timer = setInterval(()=>this.tick(), 25);
   }
   stop(){
+    this.eng._musicWanted = false;
     this.on=false;
     if(this.timer){ clearInterval(this.timer); this.timer=null; }
   }
   setIntensity(i){
     if(i===this.intensity) return;
     this.intensity=i;
-    this.bpm = 138 + i*5;
+    this.bpm = 144 + i*5;
   }
   tick(){
-    if(!this.on || !this.eng.ctx) return;
+    if(!this.on || !this.eng.ctx || this.eng.ctx.state !== 'running') return;
     const now = this.eng.ctx.currentTime;
+    // 切后台/来电恢复后，时间轴可能落后很多；直接跳到当前时刻，避免补播一串旧音符
+    if(this.next < now - 0.25) this.next = now + 0.05;
     let guard=0;
     while(this.next < now+0.16 && guard++<16){
       this.play(this.step, this.next);
@@ -695,10 +734,16 @@ class Music{
     const midi = n => 440*Math.pow(2,(n-69)/12);
     const I = this.intensity;
 
+    // 铺底和弦
+    if(s===0){
+      c.notes.forEach(note=>this.mnote(midi(note-12), t, 1.55, 'triangle', 0.012));
+    }
     // 低音
     if([0,2,6,8,10,14].indexOf(s)>=0){
       const oct = (s===8||s===14) ? 12 : 0;
       this.mnote(midi(c.root+oct), t, 0.13, 'square', 0.085);
+    } else if(s===3 || s===11){
+      this.mnote(midi(c.root), t, 0.09, 'square', 0.045);
     }
     // 琶音
     if(s%2===0 || I>=2){
@@ -1090,7 +1135,7 @@ class Game{
 
       if(pc) this.toast('PERFECT CLEAR','pc');
       else if(tspin) this.toast(tspin.mini?'T-SPIN MINI':'T-SPIN','tspin');
-      else if(n===4) this.toast('TETRIS','tetris');
+      else if(n===4) this.toast('四行消除','tetris');
       else if(this.combo>=3) this.toast('COMBO '+this.combo,'combo');
 
       sfx.clear(n, !!tspin);
@@ -1154,7 +1199,7 @@ class Game{
     }
     $('#resBadge').textContent = record ? 'NEW RECORD' : 'GAME OVER';
     $('#resScore').textContent = fmtScore(this.score);
-    $('#resSub').textContent = '经典马拉松';
+    $('#resSub').textContent = '单机经典模式';
     $('#resLines').textContent = this.lines;
     $('#resLevel').textContent = this.level;
     $('#resTime').textContent = fmtTime(this.elapsed);
@@ -1511,6 +1556,7 @@ window.__game = game;
 window.T99 = game;
 window.__audio = sfx;
 window.__music = music;
+window.__resumeAudio = () => sfx.resume();
 
 function startGame(){
   sfx.unlock();
@@ -1639,19 +1685,28 @@ function bindUI(){
     else if(k==='c' || k==='C') game.holdPiece();
   });
 
-  // 后台暂停
+  // 后台暂停 / 回前台恢复音频
   document.addEventListener('visibilitychange', ()=>{
-    if(document.hidden && game.state==='playing'){
-      game.state='paused';
-      music.stop();
-      $('#pauseOverlay').classList.add('show');
+    if(document.hidden){
+      if(game.state==='playing'){
+        game.state='paused';
+        music.stop();
+        $('#pauseOverlay').classList.add('show');
+      }
+    } else {
+      sfx.resume();
     }
   });
 
-  // 首次手势解锁音频
-  const unlock = ()=>{ sfx.unlock(); };
-  window.addEventListener('pointerdown', unlock, {once:true});
-  window.addEventListener('touchstart', unlock, {once:true, passive:true});
+  // 每次手势都尝试唤醒音频：iOS 切后台、来电或音频被打断后，
+  // AudioContext 会停在 suspended/interrupted，必须由用户手势恢复。
+  const wakeAudio = ()=>{ sfx.unlock(); };
+  window.addEventListener('pointerdown', wakeAudio, {capture:true, passive:true});
+  window.addEventListener('touchstart', wakeAudio, {capture:true, passive:true});
+  window.addEventListener('keydown', wakeAudio, {capture:true});
+  // 页面重新可见时只恢复已有上下文，不在这里创建（创建必须发生在用户手势里）
+  window.addEventListener('pageshow', ()=>sfx.resume());
+  window.addEventListener('focus', ()=>sfx.resume());
 
   // 尺寸
   let rzT=null;

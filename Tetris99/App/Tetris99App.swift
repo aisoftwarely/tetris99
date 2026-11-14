@@ -1,14 +1,49 @@
 import SwiftUI
 import WebKit
 import AVFoundation
+import UIKit
+
+enum AudioSessionManager {
+    static func activate() {
+        let session = AVAudioSession.sharedInstance()
+        do {
+            try session.setCategory(.playback, mode: .default, options: [.mixWithOthers])
+            try session.setActive(true)
+        } catch {
+            // 下一次进入前台或用户点击时会再试
+        }
+    }
+
+    static func observeInterruptions() {
+        NotificationCenter.default.addObserver(
+            forName: AVAudioSession.interruptionNotification,
+            object: AVAudioSession.sharedInstance(),
+            queue: .main
+        ) { notification in
+            guard
+                let info = notification.userInfo,
+                let raw = info[AVAudioSessionInterruptionTypeKey] as? UInt,
+                let type = AVAudioSession.InterruptionType(rawValue: raw)
+            else { return }
+
+            if type == .ended {
+                let optionsRaw = info[AVAudioSessionInterruptionOptionKey] as? UInt ?? 0
+                let options = AVAudioSession.InterruptionOptions(rawValue: optionsRaw)
+                if options.contains(.shouldResume) {
+                    activate()
+                }
+            }
+        }
+    }
+}
 
 @main
 struct Tetris99App: App {
+    @Environment(\.scenePhase) private var scenePhase
+
     init() {
-        // 游戏音效：即使打开静音开关也出声；同时不打断别的 App 的音乐
-        let session = AVAudioSession.sharedInstance()
-        try? session.setCategory(.playback, mode: .default, options: [.mixWithOthers])
-        try? session.setActive(true)
+        AudioSessionManager.observeInterruptions()
+        AudioSessionManager.activate()
     }
 
     var body: some Scene {
@@ -18,11 +53,20 @@ struct Tetris99App: App {
                 .statusBarHidden(true)
                 .persistentSystemOverlays(.hidden)
                 .preferredColorScheme(.dark)
+                .onChange(of: scenePhase) { _, phase in
+                    if phase == .active {
+                        AudioSessionManager.activate()
+                    }
+                }
         }
     }
 }
 
 struct GameWebView: UIViewRepresentable {
+    func makeCoordinator() -> Coordinator {
+        Coordinator()
+    }
+
     func makeUIView(context: Context) -> WKWebView {
         let config = WKWebViewConfiguration()
         config.allowsInlineMediaPlayback = true
@@ -48,6 +92,8 @@ struct GameWebView: UIViewRepresentable {
         webView.scrollView.showsHorizontalScrollIndicator = false
         webView.allowsBackForwardNavigationGestures = false
 
+        context.coordinator.webView = webView
+
         if let url = Bundle.main.url(forResource: "index", withExtension: "html") {
             webView.loadFileURL(url, allowingReadAccessTo: url.deletingLastPathComponent())
         }
@@ -55,4 +101,28 @@ struct GameWebView: UIViewRepresentable {
     }
 
     func updateUIView(_ uiView: WKWebView, context: Context) {}
+
+    final class Coordinator {
+        weak var webView: WKWebView?
+        private var observer: NSObjectProtocol?
+
+        init() {
+            observer = NotificationCenter.default.addObserver(
+                forName: UIApplication.didBecomeActiveNotification,
+                object: nil,
+                queue: .main
+            ) { [weak self] _ in
+                self?.webView?.evaluateJavaScript(
+                    "window.__resumeAudio && window.__resumeAudio();",
+                    completionHandler: nil
+                )
+            }
+        }
+
+        deinit {
+            if let observer = observer {
+                NotificationCenter.default.removeObserver(observer)
+            }
+        }
+    }
 }

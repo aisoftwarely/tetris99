@@ -21,7 +21,7 @@ targets:
       path: Support/Info.plist
       properties:
         CFBundleDevelopmentRegion: "$(DEVELOPMENT_LANGUAGE)"
-        CFBundleDisplayName: "TETRIS 99"
+        CFBundleDisplayName: "俄罗斯方块"
         CFBundleExecutable: "$(EXECUTABLE_NAME)"
         CFBundleIdentifier: "$(PRODUCT_BUNDLE_IDENTIFIER)"
         CFBundleInfoDictionaryVersion: "6.0"

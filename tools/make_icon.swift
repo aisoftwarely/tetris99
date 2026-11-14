@@ -41,9 +41,9 @@ let glow = CGGradient(
 )!
 ctx.drawRadialGradient(
     glow,
-    startCenter: CGPoint(x: 512, y: 512), startRadius: 20,
+    startCenter: CGPoint(x: 512, y: 512), startRadius: 0,
     endCenter: CGPoint(x: 512, y: 512), endRadius: 560,
-    options: []
+    options: [.drawsBeforeStartLocation]
 )
 
 // 四角发光方块
@@ -72,10 +72,10 @@ func drawBlock(cx: CGFloat, cy: CGFloat, s: CGFloat, angle: CGFloat, color: CGCo
     ctx.restoreGState()
 }
 
-drawBlock(cx: 155, cy: 225, s: 190, angle: 0.10, color: rgb(0.16, 0.90, 1.0))
-drawBlock(cx: 865, cy: 205, s: 170, angle: -0.12, color: rgb(1.0, 0.18, 0.53))
-drawBlock(cx: 150, cy: 800, s: 150, angle: -0.12, color: rgb(1.0, 0.82, 0.24))
-drawBlock(cx: 875, cy: 810, s: 145, angle: 0.13, color: rgb(0.54, 0.36, 1.0))
+drawBlock(cx: 145, cy: 180, s: 170, angle: 0.10, color: rgb(0.16, 0.90, 1.0))
+drawBlock(cx: 880, cy: 175, s: 160, angle: -0.12, color: rgb(1.0, 0.18, 0.53))
+drawBlock(cx: 145, cy: 805, s: 145, angle: -0.12, color: rgb(1.0, 0.82, 0.24))
+drawBlock(cx: 880, cy: 810, s: 140, angle: 0.13, color: rgb(0.54, 0.36, 1.0))
 
 func drawLine(_ text: String, fontName: String, fontSize: CGFloat, kern: CGFloat,
               color: CGColor, centerX: CGFloat, baseline: CGFloat,
@@ -96,12 +96,12 @@ func drawLine(_ text: String, fontName: String, fontSize: CGFloat, kern: CGFloat
     ctx.setShadow(offset: .zero, blur: 0, color: nil)
 }
 
-drawLine("TETRIS", fontName: "Helvetica-Bold", fontSize: 74, kern: 12,
-         color: rgb(0.78, 0.94, 1.0), centerX: 512, baseline: 700,
-         shadow: rgb(0.13, 0.9, 1.0, 0.35), blur: 18)
+drawLine("俄罗斯", fontName: "PingFangSC-Semibold", fontSize: 106, kern: 14,
+         color: rgb(0.78, 0.94, 1.0), centerX: 512, baseline: 748,
+         shadow: rgb(0.13, 0.9, 1.0, 0.35), blur: 20)
 
-drawLine("99", fontName: "Helvetica-Bold", fontSize: 400, kern: -12,
-         color: rgb(1, 1, 1), centerX: 512, baseline: 300,
+drawLine("方块", fontName: "PingFangSC-Semibold", fontSize: 330, kern: 18,
+         color: rgb(1, 1, 1), centerX: 512, baseline: 320,
          shadow: rgb(1.0, 0.10, 0.5, 0.65), blur: 50)
 
 // 细边框
